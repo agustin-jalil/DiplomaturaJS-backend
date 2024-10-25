@@ -7,6 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.mjs" 
   },
-  "author": "Kevin Agüero",
+  "author": "Agustin Jalil",
   "license": "ISC"
 }

@@ -20,7 +20,7 @@
         "debilidad": "Sombras",
         "poder": "Manipulación de la luz",
         "habilidadEspecial": "Curación",
-        "aliado": "SuperVilma",
+        "aliado": "SuperCarlitos",
         "enemigo": "El Oscuro"
     },
     {
@@ -33,7 +33,7 @@
         "poder": "Control del tiempo",
         "habilidadEspecial": "Teletransportación",
         "aliado": "El Caos",
-        "enemigo": "SuperVilma"
+        "enemigo": "SuperCarlitos"
     },
     {
         "id": 11,
