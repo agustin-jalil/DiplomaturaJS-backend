@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1><%= title %></h1>
+    <a href="/" class="btn">Volver al Inicio</a>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Nombre Real</th>
+          <th>Sociedad</th>
+          <th>Edad</th>
+          <th>Planeta de Origen</th>
+          <th>Debilidad</th>
+          <th>Poderes</th>
+          <th>Habilidad Especial</th>
+          <th>Aliados</th>
+          <th>Enemigos</th>
+          <th>Seleccionar:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% heroes.forEach(hero => { %>
+          <tr>
+            <td><%= hero.nombreSuperHeroe %></td>
+            <td><%= hero.nombreReal %></td>
+            <td><%= hero.nombreSociedad %></td>
+            <td><%= hero.edad %></td>
+            <td><%= hero.planetaOrigen %></td>
+            <td><%= hero.debilidad %></td>
+            <td><%= hero.poder.join(', ') %></td>
+            <td><%= hero.habilidadEspecial %></td>
+            <td><%= hero.aliado.join(', ') %></td>
+            <td><%= hero.enemigo.join(', ') %></td>
+            <td>
+                <!-- Eliminar -->
+                <form action="/heroes/<%= hero._id %>/delete?_method=DELETE" method="POST">
+                  <button type="submit" class="btn-delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este superhéroe?');">Eliminar</button>
+                </form>
+                
+                <!-- Editar -->
+                <a href="/heroes/<%= hero._id %>/edit" class="btn-edit">Editar</a>              
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </main>
+  <footer>
+    <p>&copy; 2024 CRUD de Superhéroes</p>
+    <p>Alumna: Ponce Virginia Alejandra</p>
+</footer>  
+</body>
+</html>

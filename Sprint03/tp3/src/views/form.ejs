@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1><%= title %></h1>
+        <a href="/" class="btn">Volver al Inicio</a>
+    </header>
+    <main>
+        <!-- Acción dinámica: si es edición, incluye el ID en la ruta -->
+        <form action="<%= hero ? '/heroes/' + hero._id + '/edit' : '/heroes' %>" method="POST">
+            <label for="nombreSuperHeroe">Nombre del Superhéroe:</label>
+            <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" value="<%= hero ? hero.nombreSuperHeroe : '' %>" required>
+            
+            <label for="nombreReal">Nombre Real:</label>
+            <input type="text" id="nombreReal" name="nombreReal" value="<%= hero ? hero.nombreReal : '' %>" required>
+            
+            <label for="nombreSociedad">Sociedad:</label>
+            <input type="text" id="nombreSociedad" name="nombreSociedad" value="<%= hero ? hero.nombreSociedad : '' %>">
+            
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" value="<%= hero ? hero.edad : '' %>">
+            
+            <label for="planetaOrigen">Planeta de Origen:</label>
+            <input type="text" id="planetaOrigen" name="planetaOrigen" value="<%= hero ? hero.planetaOrigen : '' %>">
+            
+            <label for="debilidad">Debilidad:</label>
+            <input type="text" id="debilidad" name="debilidad" value="<%= hero ? hero.debilidad : '' %>">
+            
+            <label for="poder">Poderes (separados por comas):</label>
+            <input type="text" id="poder" name="poder" value="<%= hero ? hero.poder.join(', ') : '' %>">
+            
+            <label for="habilidadEspecial">Habilidad Especial:</label>
+            <input type="text" id="habilidadEspecial" name="habilidadEspecial" value="<%= hero ? hero.habilidadEspecial : '' %>">
+            
+            <label for="aliado">Aliados (separados por comas):</label>
+            <input type="text" id="aliado" name="aliado" value="<%= hero ? hero.aliado.join(', ') : '' %>">
+            
+            <label for="enemigo">Enemigos (separados por comas):</label>
+            <input type="text" id="enemigo" name="enemigo" value="<%= hero ? hero.enemigo.join(', ') : '' %>">
+          
+            <!-- Botón dinámico para creación o edición -->
+            <button type="submit"><%= hero ? 'Actualizar' : 'Agregar' %></button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 CRUD de Superhéroes</p>
+        <p>Alumna: Ponce Virginia Alejandra</p>
+    </footer>  
+</body>
+</html>

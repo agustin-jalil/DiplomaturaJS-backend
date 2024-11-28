@@ -1,0 +1,61 @@
+<!-- views/greeting.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superhéroe - <%= nombreSuperHeroe %></title>
+</head>
+<body>
+  <header>
+    <h1>Superhéroe: <%= nombreSuperHeroe %></h1>
+  </header>
+
+  <section>
+    <h2>Detalles</h2>
+    <ul>
+      <li><strong>Nombre Real:</strong> <%= nombreReal %></li>
+      <li><strong>Edad:</strong> <%= edad %></li>
+      <li><strong>Planeta de Origen:</strong> <%= planetaOrigen %></li>
+      <li><strong>Debilidad:</strong> <%= debilidad || 'Desconocida' %></li>
+      <li><strong>Poderes:</strong>
+        <ul>
+          <% if (poderes && poderes.length > 0) { %>
+            <% poderes.forEach(poder => { %>
+              <li><%= poder %></li>
+            <% }); %>
+          <% } else { %>
+            <li>No tiene poderes listados</li>
+          <% } %>
+        </ul>
+      </li>
+      <li><strong>Aliados:</strong>
+        <ul>
+          <% if (aliados && aliados.length > 0) { %>
+            <% aliados.forEach(aliado => { %>
+              <li><%= aliado %></li>
+            <% }); %>
+          <% } else { %>
+            <li>No tiene aliados listados</li>
+          <% } %>
+        </ul>
+      </li>
+      <li><strong>Enemigos:</strong>
+        <ul>
+          <% if (enemigos && enemigos.length > 0) { %>
+            <% enemigos.forEach(enemigo => { %>
+              <li><%= enemigo %></li>
+            <% }); %>
+          <% } else { %>
+            <li>No tiene enemigos listados</li>
+          <% } %>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Alumna: Ponce Virginia Alejandra.</p>
+  </footer>
+</body>
+</html>

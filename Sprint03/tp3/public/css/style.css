@@ -1,0 +1,209 @@
+/* General Styles */
+body {
+    font-family: 'Gotham', sans-serif; /* Tipografía Gotham para un estilo moderno */
+    margin: 0;
+    padding: 0;
+    background-color: #e3f2fd; /* Fondo celeste para un diseño limpio y relajante */
+    color: #333; /* Color de texto principal para buen contraste */
+}
+
+/* Header */
+header {
+    background-color: #01579b; /* Fondo azul para el encabezado */
+    color: white; /* Texto en blanco */
+    padding: 1.5rem;
+    text-align: center; /* Centrado de los elementos */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para un efecto flotante */
+    position: sticky;
+    top: 0; /* El encabezado se queda fijo en la parte superior */
+    z-index: 1000; /* Asegura que el encabezado se muestre encima de otros elementos */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #0288d1; /* Color azul para el botón */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+header .btn:hover {
+    background-color: #0277bd; /* Efecto hover para que se vea más oscuro */
+}
+
+/* Main Section */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto; /* Centrado del contenido principal */
+    flex: 1;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #01579b; /* Títulos en azul oscuro */
+}
+
+/* Cuadro con botones en la página principal */
+.menu-principal {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.menu-principal ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-principal li {
+    margin: 15px 0;
+}
+
+/* Estilo de los botones del menú */
+.menu-principal .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Botón azul para la acción principal */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px;
+}
+
+.menu-principal .btn:hover {
+    background-color: #0056b3; /* Efecto hover más oscuro */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Eliminamos los bordes de las celdas */
+    background-color: white;
+    border-radius: 8px; /* Bordes redondeados para el cuadro */
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+thead {
+    background-color: #0288d1; /* Azul para el encabezado de la tabla */
+    color: white;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Línea delgada entre filas */
+}
+
+tr:hover {
+    background-color: #e1f5fe; /* Cambio de color al pasar el ratón por encima */
+}
+
+a {
+    color: #0288d1;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Botones editar y eliminar */
+td a, td form {
+    display: block; /* Cada botón o enlace ocupa una línea completa */
+    margin-bottom: 10px; /* Separación entre botones */
+    text-align: center; /* Botones centrados dentro de la celda */
+}
+
+
+/* Botón para eliminar */
+.btn-delete {
+    background-color: #0274ad;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: center;
+    width: 100%; /* Para que ocupe todo el ancho del contenedor */
+}
+
+.btn-delete:hover {
+    background-color: #004c8c;
+}
+
+/* Botón para editar */
+.btn-edit {
+    background-color: #039be5;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: center;
+    width: 67%; /* Para que ocupe todo el ancho del contenedor */
+}
+
+.btn-edit:hover {
+    background-color: #0288d1;
+}
+
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 3rem;
+    background-color: #01579b;
+    color: white;
+    margin-top: 4rem;  /* Agrega un poco de espacio entre el contenido y el pie de página */
+}
+
+
+/* Estilo de formularios */
+
+form input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+form button {
+    padding: 0.8rem 1.5rem;
+    background-color: #0288d1; /* Botón azul para acciones */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0277bd; /* Efecto hover en el botón */
+}
