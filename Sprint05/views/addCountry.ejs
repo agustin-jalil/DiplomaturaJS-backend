@@ -1,0 +1,45 @@
+<!-- views/addCountry.ejs -->
+<main class="container mx-auto p-4">
+    
+    <div class="bg-green-100 rounded-lg p-6 shadow-lg max-w-lg mx-auto">
+        <h1 class="text-2xl font-bold mb-4 text-center">Agregar Nuevo País</h1>
+        <form action="/api/countries/add" method="POST" class="max-w-lg mx-auto">
+            <div class="mb-4">
+                <label for="name_common" class="block text-gray-700 text-sm font-bold mb-2">Nombre Común:</label>
+                <input type="text" id="name_common" name="name_common" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" minlength="3" maxlength="90" required>
+            </div>
+            <div class="mb-4">
+                <label for="name_official" class="block text-gray-700 text-sm font-bold mb-2">Nombre Oficial:</label>
+                <input type="text" id="name_official" name="name_official" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" minlength="3" maxlength="90" required>
+            </div>
+            <div class="mb-4">
+                <label for="capital" class="block text-gray-700 text-sm font-bold mb-2">Capital:</label>
+                <input type="text" id="capital" name="capital" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" minlength="3" maxlength="90" required>
+            </div>
+            <div class="mb-4">
+                <label for="area" class="block text-gray-700 text-sm font-bold mb-2">Área:</label>
+                <input type="number" id="area" name="area" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" min="1" required>
+            </div>
+            <div class="mb-4">
+                <label for="population" class="block text-gray-700 text-sm font-bold mb-2">Población:</label>
+                <input type="number" id="population" name="population" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" min="1" required>
+            </div>
+            <div class="mb-4">
+                <label for="gini" class="block text-gray-700 text-sm font-bold mb-2">Índice Gini:</label>
+                <input type="number" id="gini" name="gini" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" min="0" max="100">
+            </div>
+            <div class="mb-4">
+                <label for="timezones" class="block text-gray-700 text-sm font-bold mb-2">Zonas Horarias:</label>
+                <input type="text" id="timezones" name="timezones" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="borders" class="block text-gray-700 text-sm font-bold mb-2">Fronteras:</label>
+                <input type="text" id="borders" name="borders" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="flex items-center justify-center">
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar País</button>
+            </div>
+        </form>
+    </div>
+    
+</main>

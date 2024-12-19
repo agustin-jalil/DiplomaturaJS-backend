@@ -1,0 +1,16 @@
+npm install axios //Axios es una librería de JavaScript que se utiliza para hacer solicitudes HTTP desde el servidor o el cliente.
+npm install express  //Express es un framework minimalista para Node.js que proporciona una serie de funciones y características para construir aplicaciones web y APIs.
+npm install mongoose  //Mongoose es una librería de modelado de objetos (ODM) para MongoDB y Node.js. Proporciona una manera sencilla de modelar tus aplicaciones de datos y incluye funcionalidades como validación de esquemas y consultas.
+npm install dotenv //Dotenv es un módulo que carga variables de entorno desde un archivo .env en process.env.
+npm install --save-dev nodemon //Nodemon es una herramienta que ayuda en el desarrollo de aplicaciones Node.js al monitorear los archivos del directorio en el que se inició nodemon y reiniciar automáticamente la aplicación cuando detecta cambios.
+npm install express-ejs-layouts
+npm install method-override
+npm install ejs
+npm install express-validator
+npm install connect-flash 
+npm install express-session
+
+
+
+
+

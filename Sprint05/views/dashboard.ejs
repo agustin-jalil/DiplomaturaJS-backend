@@ -1,0 +1,89 @@
+<!-- views/dashboard.ejs -->
+<main class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4 text-center">Dashboard de Países Hispanohablantes</h1>
+    <div class="overflow-x-auto">
+        <% if (messages && messages.length > 0) { %>
+            <div class="flash-messages">
+                <% messages.forEach(message => { %>
+                    <div class="alert alert-<%= message.type %>">
+                        <%= message.text %>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+        <table class="min-w-full divide-y divide-gray-200 border border-gray-300 shadow-md">
+            <thead class="bg-green-900 text-white">
+                <tr class="border-b border-gray-300">
+                    <th class="px-1 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Nombre Oficial</th>
+                    <th class="px-1 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Capital</th>
+                    <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Fronteras</th>
+                    <th class="px-1 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Área</th>
+                    <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Población</th>
+                    <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Índice Gini</th>
+                    <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Zonas Horarias</th>
+                    <th class="px-1 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Creador</th>
+                    <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <% if (paises.length > 0) { %>
+                    <% paises.forEach(pais => { %>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-1 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= pais.name.official %></td>
+                            <td class="px-1 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= pais.capital.join(', ') || '-' %></td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= pais.borders.join(', ') || 'N/A' %></td>
+                            <td class="px-1 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= pais.area %></td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= pais.population %></td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300">
+                                <% if (Object.keys(pais.gini).length > 0) { %>
+                                    <%= Object.values(pais.gini).join(', ') %>
+                                <% } else { %>
+                                    N/A
+                                <% } %>
+                            </td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= pais.timezones.join(', ') %></td>
+                            <td class="px-1 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= pais.creador %></td>
+                            <td class="px-3 py-4 whitespace-nowrap text-center">
+                                <a href="/api/countries/<%= pais._id %>/editar" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Editar</a>
+                                <br><br>
+                                <form action="/api/countries/<%= pais._id %>?_method=DELETE" method="POST" class="inline" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este país?');">
+                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                    <!-- Fila de totales -->
+                    <tr class="border-b border-gray-300 bg-gray-100 font-bold">
+                        <td colspan="3" class="text-right px-2 py-4 whitespace-nowrap text-center border-r border-gray-300">Totales:</td>
+                        <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= paises.reduce((total, pais) => total + pais.population, 0) %></td>
+                        <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= paises.reduce((total, pais) => total + pais.area, 0) %></td>
+                        <td class="px-3 py-4 whitespace-nowrap text-center border-r border-gray-300">
+                            <%
+                                // asegurar que pais.gini es siempre un objeto válido o devuelve un array vacío.
+                                const giniValues = paises.flatMap(pais => {
+                                    if (pais.gini && typeof pais.gini === "object") {
+                                        return Object.values(pais.gini);
+                                    }
+                                    return []; // Devuelve un array vacío si no hay datos válidos
+                                });
+
+                                // Sumar todos los valores del índice Gini
+                                const giniSum = giniValues.reduce((total, value) => total + parseFloat(value), 0);
+
+                                // Calcular el promedio del índice Gini
+                                const giniAvg = giniValues.length ? giniSum / giniValues.length : 0;
+                            %>
+                            
+                            <%= giniAvg.toFixed(2) %>
+                        </td>
+                        <td colspan="3" class="px-2 py-4 whitespace-nowrap text-center"></td>
+                    </tr>
+                <% } else { %>
+                    <tr class="border-b border-gray-300">
+                        <td colspan="9" class="px-4 py-4 whitespace-nowrap text-center">No hay países disponibles.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</main>
