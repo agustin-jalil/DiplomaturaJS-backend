@@ -1,0 +1,71 @@
+<main class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4 text-center">Dashboard de Superhéroes</h1>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 border border-gray-300 shadow-md">
+            <thead class="bg-gray-800 text-white">
+                <tr class="border-b border-gray-300">
+                    <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Nombre del Superhéroe</th>
+                    <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Nombre Real</th>
+                    <th class="px-1 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Edad</th>
+                    <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Planeta de Origen</th>
+                    <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300 ">Debilidad</th>
+                    <th class="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Poderes</th>
+                    <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Aliados</th>
+                    <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300 border-r border-gray-300">Enemigos</th>
+                    <th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-center border-b border-gray-300">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <% if (superheroes.length > 0) { %>
+                    <% superheroes.forEach(superheroe => { %>
+                        <tr class="border-b border-gray-300">
+                            <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= superheroe.nombreSuperHeroe %></td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= superheroe.nombreReal || '-'%></td>
+                            <td class="px-1 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= superheroe.edad %></td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= superheroe.planetaOrigen %></td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300"><%= superheroe.debilidad || 'N/A' %></td>
+                            <td class="px-2 py-4 whitespace-nowrap text-center border-r border-gray-300">
+                                <% if (superheroe.poder.length > 0) { %>
+                                    <% superheroe.poder.forEach(p => { %>
+                                        <div><%= p %></div>
+                                    <% }) %>
+                                <% } else { %>
+                                    <div>N/A</div>
+                                <% } %>
+                            </td>
+                            <td class="px-3 py-4 whitespace-nowrap text-center border-r border-gray-300">
+                                <% if (superheroe.aliado.length > 0) { %>
+                                    <% superheroe.aliado.forEach(a => { %>
+                                        <div><%= a %></div>
+                                    <% }) %>
+                                <% } else { %>
+                                    <div>N/A</div>
+                                <% } %>
+                            </td>
+                            <td class="px-3 py-4 whitespace-nowrap text-center border-r border-gray-300">
+                                <% if (superheroe.enemigo.length > 0) { %>
+                                    <% superheroe.enemigo.forEach(e => { %>
+                                        <div><%= e %></div>
+                                    <% }) %>
+                                <% } else { %>
+                                    <div>N/A</div>
+                                <% } %>
+                            </td>
+                            <td class="px-3 py-4 whitespace-nowrap text-center">
+                                <a href="/api/heroes/<%= superheroe.id %>/editar" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Editar</a>
+                                <br><br>
+                                <form action="/api/heroes/<%= superheroe.id %>?_method=DELETE" method="POST" class="inline" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este superhéroe?');">
+                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr class="border-b border-gray-300">
+                        <td colspan="9" class="px-4 py-4 whitespace-nowrap text-center">No hay superhéroes disponibles.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</main>

@@ -1,61 +1,49 @@
+// Inicializar el servidor, conectar con la BD y cargar las rutas para gestionar todas las solicitudes relacionadas con los superhéroes
 import express from 'express';
-import { connectDB } from './src/config/dbConfig.mjs';
-import router from './src/routes/superHeroRoutes.mjs';
-import path from 'path';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';  
+import expressLayouts from 'express-ejs-layouts';
+import { connect } from './config/dbConfig.mjs';
+import superHeroRoutes from './routes/superHeroRoutes.mjs';
+import path from 'path'; // Para manejar rutas de archivos
 import methodOverride from 'method-override';
-import expressEjsLayouts from 'express-ejs-layouts';
-
-dotenv.config(); // Cargar variables de entorno
 
 const app = express();
+const PORT = 3000;
 
-// Obtener la ruta base donde estarán las vistas
-const __filename = fileURLToPath(import.meta.url);  
-const __dirname = path.dirname(__filename);  
-
-// Middleware para sobrescribir el método HTTP
-app.use(methodOverride('_method')); 
-
-// Configurar EJS como motor de plantillas
+// Configurar EJS como motor de vistas
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'src', 'views'));
+app.set('views', path.resolve('views')); // Directorio de vistas
+app.use(expressLayouts); // Habilita express-ejs-layouts
+app.set('layout', 'layout'); // Configura layout por defecto
 
-// Middleware para procesar solicitudes JSON y formularios
+// Middleware para parsear JSON
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 
-// Conectar a la base de datos y manejar errores de conexión
-connectDB().catch(err => {
-    console.error('Error al conectar a la base de datos:', err);
-    process.exit(1);  
+// Conexión a MongoDB
+connect();
+
+app.use((req, res, next) => {
+    console.log('Método:', req.method);
+    console.log('Ruta:', req.path);
+    console.log('Cabeceras:', req.headers);
+    console.log('Cuerpo:', req.body);
+    next();
 });
 
-// Rutas de superhéroes
-app.use(router);
+// Usar method-override para manejar métodos DELETE
+app.use(methodOverride('_method'));
 
-// Configurar express-ejs-layouts
-app.use(expressEjsLayouts);
-app.set('layout', 'layout'); // Indicar el layout que se va a usar
+// Configuración de rutas
+app.use('/api', superHeroRoutes);
 
-// Configurar la carpeta estática
-app.use(express.static(path.join(__dirname, './public')));
-
-// Ruta principal
-app.get('/', (req, res) => {
-    res.render('index', {
-        title: 'Mi Aplicación',
-        navbarLinks: [
-            { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
-            { text: 'Acerca de', href: '/about', icon: '/icons/info.svg' },
-            { text: 'Contacto', href: '/contact', icon: '/icons/contact.svg' }
-        ]
-    });
+// Manejo de errores para rutas no encontradas
+app.use((req, res) => {
+    res.status(404).render('404', { mensaje: "Ruta no encontrada" }); // Vista de error 404
 });
 
-// Configuración del puerto
-const PORT = process.env.PORT || 3000;
+// Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto http://localhost:${PORT}/`);
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}/api/index`);
 });

@@ -1,0 +1,53 @@
+<main class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Agregar Superhéroe</h1>
+
+    <% if (locals.error) { %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <%= error %>
+        </div>
+    <% } %>
+
+    <form action="/api/heroes/agregar" method="POST" class="space-y-4">
+        <div>
+            <label for="nombreSuperHeroe" class="block text-sm font-medium text-gray-700">Nombre del Superhéroe</label>
+            <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" minlength="3" maxlength="60" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div>
+            <label for="nombreReal" class="block text-sm font-medium text-gray-700">Nombre Real</label>
+            <input type="text" id="nombreReal" name="nombreReal" minlength="3" maxlength="60" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div>
+            <label for="edad" class="block text-sm font-medium text-gray-700">Edad</label>
+            <input type="number" id="edad" name="edad" min="0" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div>
+            <label for="planetaOrigen" class="block text-sm font-medium text-gray-700">Planeta de Origen</label>
+            <input type="text" id="planetaOrigen" name="planetaOrigen" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div>
+            <label for="debilidad" class="block text-sm font-medium text-gray-700">Debilidad</label>
+            <input type="text" id="debilidad" name="debilidad" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div>
+            <label for="poder" class="block text-sm font-medium text-gray-700">Poderes</label>
+            <input type="text" id="poder" name="poder" placeholder="Agregar poderes, separados por coma" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div>
+            <label for="aliado" class="block text-sm font-medium text-gray-700">Aliados</label>
+            <input type="text" id="aliado" name="aliado" placeholder="Agregar aliados, separados por coma" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <div>
+            <label for="enemigo" class="block text-sm font-medium text-gray-700">Enemigos</label>
+            <input type="text" id="enemigo" name="enemigo" placeholder="Agregar enemigos, separados por coma" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+
+        <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Agregar Superhéroe</button>
+    </form>
+</main>
