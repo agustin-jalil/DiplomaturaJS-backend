@@ -12,7 +12,7 @@ const superheroSchema = new mongoose.Schema({
     aliado:[String],
     enemigo: [String ],
     createdAt: {type:Date, default: Date.now},
-    creador: { type: String, default: 'De La Fuente Gonzalo' }
+    creador: { type: String, default: 'Agustin Jalil Leon' }
     }, { collection: 'Grupo-04' });// Aquí defino la coleccion del grupo 
 
 export default mongoose.model('SuperHero', superheroSchema);
